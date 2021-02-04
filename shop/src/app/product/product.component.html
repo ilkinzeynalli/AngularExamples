@@ -1,16 +1,24 @@
 <h3 *ngIf="this.products.length > 0; else noProduct">{{title}}</h3>
 <div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input id="search" name="search" class="form-control" [(ngModel)]="filterText" />
+            <span *ngIf="filterText !== '' ">Aranan kelme <strong>{{filterText}}</strong></span>
+        </div>
+    </div>
+</div>
+<div class="row">
     <ng-template #noProduct>
         <div class="alert alert-primary" role="alert">
             Bu categoride kayit yok
         </div>
     </ng-template>
-    <div *ngFor="let product of products" class="card m-2" style="width: 18rem;">
-        <img [src]="product.imageUrl" class="card-img-top" alt="...">
+    <div *ngFor="let product of products | productFilter:filterText" class="card m-2" style="width: 18rem;">
+        <img [src]="product.imageUrl" class="card-img-top" alt="..." style="height: 200px;">
         <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
+            <h5 class="card-title">{{product.name | lowercase}} {{product.price | currency:'USD':true:"1.2-2"}}</h5>
             <p class="card-text">{{product.description}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a (click)="addToCart(product)" class="btn btn-primary">Sebete ekle</a>
         </div>
     </div>
 </div>
