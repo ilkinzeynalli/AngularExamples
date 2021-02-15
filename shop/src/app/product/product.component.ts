@@ -1,30 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from '../services/alertify.service';
+import { ProductService } from '../services/product.service';
 import { Product } from './product';
+
+declare let alertify: any;
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  providers: [ProductService]
 })
 export class ProductComponent implements OnInit {
+  constructor(
+     private alertifyService: AlertifyService,
+     private productService: ProductService,
+     private activatedRoute:ActivatedRoute
+  ) { }
 
-  constructor() { }
   title: string = "Urun Listesi";
-  filterText:string = "";
+  filterText: string = "";
 
-  products: Product[] = [
-    { id: 1, name: "Laptop 1", price: 2500.435345, categoryId: 1, description: "desc 1",imageUrl: "../assets/images/products/picture1.jpg"},
-    { id: 2, name: "Laptop 2", price: 2500, categoryId: 2, description: "desc 2",imageUrl: "../assets/images/products/picture2.jpg"},
-    { id: 3, name: "Laptop 3", price: 2500, categoryId: 3, description: "desc 3",imageUrl: "../assets/images/products/picture1.jpg" },
-    { id: 1, name: "Laptop 1", price: 2500, categoryId: 1, description: "desc 1",imageUrl: "../assets/images/products/picture2.jpg"},
-    { id: 2, name: "Laptop 2", price: 2500, categoryId: 2, description: "desc 2",imageUrl: "../assets/images/products/picture1.jpg" },
-    { id: 3, name: "Laptop 3", price: 2500, categoryId: 3, description: "desc 3",imageUrl: "../assets/images/products/picture2.jpg" }
-  ];
+  products: Product[] = [];
 
-  addToCart(product:Product){
-    alert('Sepete eklendi: ' + product.name);
+  addToCart(product: Product) {
+    this.alertifyService.success(product.name + ' added!');
   }
+
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(p=>{
+      let categoryId = p["categoryId"];
+
+      this.productService.getProducts(categoryId).subscribe(data => {
+        this.products = data;
+      });
+    })
+    
   }
 
 }

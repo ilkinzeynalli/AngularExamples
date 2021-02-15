@@ -1,0 +1,12 @@
+{
+	"products" : [
+        	{ "id": 1, "name": "Laptop 1", "price": 2500.435345, "categoryId": 1, "description": "desc 1", "imageUrl": "../assets/images/products/picture1.jpg" },
+    		{ "id": 2, "name": "Laptop 2", "price": 2500, "categoryId": 2, "description": "desc 2", "imageUrl": "../assets/images/products/picture2.jpg" }
+	],
+	"categories": [
+		{"id":1,"name":"Bilgisayar"},
+		{"id":2,"name":"Meiset"}
+	]
+}
+
+

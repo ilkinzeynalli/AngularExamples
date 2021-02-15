@@ -1,4 +1,6 @@
-<ul class="list-group">
-    <li class="list-group-item active">Tum Kategoriler</li>
-    <li class="list-group-item" *ngFor="let category of categories">{{category.name}}</li>
-</ul>
+<nav class="nav d-flex">
+  <a routerLink="products"  class="p-2 link-secondary"> Tüm Kategoriler</a>
+
+  <a *ngFor="let category of categories" class="p-2 link-secondary"
+    routerLink='/products/category/{{category.id}}'>{{category.name}}</a>
+</nav>
