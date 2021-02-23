@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Form 1</h3>
+        <form #productAddForm="ngForm" (ngSubmit)="add(productAddForm)">
+            <div class="form-group">
+                <label for="name">Urun adı</label>
+                <input type="text" #name="ngModel" [(ngModel)]="model.name" id="name" name="name"
+                    placeholder="Urun adi girin" class="form-control" required />
+                <div *ngIf="name.invalid && name.dirty" class="text-danger">Urun adi giriniz</div>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" #price="ngModel" [(ngModel)]="model.price" id="price" name="price"
+                    placeholder="Urun fiyatini girin" class="form-control" required />
+                <div *ngIf="price.invalid && price.dirty" class="text-danger">Urun fiyatini girin</div>
+            </div>
+            <div class="form-group">
+                <label for="categoryId">Category</label>
+                <select #categoryId="ngModel" [(ngModel)]="model.categoryId" id="categoryId" name="categoryId"
+                    class="form-control" required>
+                    <option value="" selected>Secin</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+                <div *ngIf="categoryId.invalid && categoryId.touched" class="text-danger">Categoriyi girin</div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea #description="ngModel" [(ngModel)]="model.description" id="description" name="description"
+                    class="form-control" required>
+                </textarea>
+                <div *ngIf="description.invalid && description.dirty" class="text-danger">Aciklamani daxil edin</div>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image </label>
+                <input #imageUrl="ngModel" [(ngModel)]="model.imageUrl" id="imageUrl" name="imageUrl"
+                    class="form-control" required/>
+                <div *ngIf="imageUrl.invalid && imageUrl.dirty" class="text-danger">Resmi daxil edin</div>
+            </div>
+            <input type="submit" value="Save" [disabled]="productAddForm.invalid" class="btn btn-success"/>
+        </form>
+    </div>
+</div>
