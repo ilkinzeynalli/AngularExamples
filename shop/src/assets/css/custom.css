@@ -1,0 +1,11 @@
+::ng-deep input.ng-touched.ng-invalid {
+    border:solid 1px red;
+}
+
+::ng-deep textarea.ng-touched.ng-invalid {
+    border:solid 1px red;
+}
+
+::ng-deep select.ng-touched.ng-invalid {
+    border:solid 1px red;
+}

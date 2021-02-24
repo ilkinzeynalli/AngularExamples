@@ -1,9 +1,69 @@
+<h3>Form 2</h3>
 <form [formGroup]="productAddForm" (ngSubmit)="add()">
     <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" formControllerName="name" class="form-control" />
-        <div *ngIf="productAddForm.controls.name.dirty">Urun adini
-            girin</div>
-    </div>
+        <label for="name">Urun adı</label>
+        <input type="text" id="name" name="name" formControlName="name" class="form-control"
+            placeholder="Urun adini girin" />
 
+        <div *ngIf="productAddForm.controls['name'].invalid &&
+    (productAddForm.controls['name'].dirty || productAddForm.controls['name'].touched)" class="text-danger">
+            <div *ngIf="productAddForm.controls['name'].errors?.required">
+                Urun adini girin
+            </div>
+            <div *ngIf="productAddForm.controls['name'].errors?.minlength">
+                Urun adini girin 3 karakter en az girin
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Price">Fiyat </label>
+        <input type="text" id="price" name="price" formControlName="price" class="form-control"
+            placeholder="Urun fiyatini girin" />
+        <div *ngIf="productAddForm.controls['price'].invalid &&
+                    (productAddForm.controls['price'].dirty || productAddForm.controls['price'].touched)"
+            class="text-danger">
+            <div *ngIf="productAddForm.controls['price'].errors?.required">
+                Urun fiyatini girin
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Category">Kategori</label>
+        <select id="categoryId" name="categoryId" formControlName="categoryId" class="form-control">
+            <option value='' selected>Secin</option>
+            <option *ngFor="let category of categories" [value]='category.id'>{{category.name}}</option>
+        </select>
+        <div *ngIf="productAddForm.controls['categoryId'].invalid &&
+                    (productAddForm.controls['categoryId'].dirty || productAddForm.controls['categoryId'].touched)"
+            class="text-danger">
+            <div *ngIf="productAddForm.controls['categoryId'].errors?.required">
+                Kategori secin
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description">Aciklama</label>
+        <textarea id="description" name="description" formControlName="description" class="form-control"></textarea>
+        <div *ngIf="productAddForm.controls['description'].invalid &&
+                    (productAddForm.controls['description'].dirty || productAddForm.controls['description'].touched)"
+            class="text-danger">
+            <div *ngIf="productAddForm.controls['description'].errors?.required">
+                Description girin
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="imageUrl">Resim URL</label>
+        <input type="text" id="imageUrl" name="imageUrl" formControlName="imageUrl" class="form-control" />
+        <div *ngIf="productAddForm.controls['imageUrl'].invalid &&
+                    (productAddForm.controls['imageUrl'].dirty || productAddForm.controls['imageUrl'].touched)"
+            class="text-danger">
+            <div *ngIf="productAddForm.controls['imageUrl'].errors?.required">
+                Resim url-sing daxil edin
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Save" [disabled]="productAddForm.invalid" class="btn btn-success"/>
 </form>

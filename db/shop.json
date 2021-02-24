@@ -23,6 +23,14 @@
       "description": "434343",
       "imageUrl": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-pro-family-hero?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1604021663000",
       "id": 3
+    },
+    {
+      "name": "deneme 2",
+      "price": "1000",
+      "categoryId": "2",
+      "description": "dasdasdas desc",
+      "imageUrl": "https://maxi.az/upload/resize_cache/iblock/306/256_256_1/3065c423c2215d08425db4f5394d2ffa.jpg",
+      "id": 4
     }
   ],
   "categories": [
